@@ -179,12 +179,17 @@
         }
         
         resizeCanvas() {
-            this.canvas.width = window.innerWidth;
-            this.canvas.height = window.innerHeight;
+            const dpr = window.devicePixelRatio || 1;
+            this.canvas.width = window.innerWidth * dpr;
+            this.canvas.height = window.innerHeight * dpr;
+            this.canvas.style.width = window.innerWidth + 'px';
+            this.canvas.style.height = window.innerHeight + 'px';
+
             this.gameWidth = this.canvas.width;
             this.gameHeight = this.canvas.height;
             this.groundY = this.gameHeight - 80;
-            
+            this.ctx.setTransform(1, 0, 0, 1, 0, 0); // リセット（念のため残す）
+
             if (this.player) {
                 this.player.y = this.groundY;
             }
@@ -268,6 +273,9 @@
         }
 
         handleSpaceKey() {
+            if (this.inputDisabledUntil && performance.now() < this.inputDisabledUntil) {
+                return;
+            }
             if (this.gameOver) {
                 this.restart();
             } else if (this.gameRunning && this.player.onGround) {
@@ -301,6 +309,7 @@
                     instructions.classList.add('hidden'); 
                 }, 3000);
             }
+            this.uiUpdateInterval = setInterval(() => this.updateUI(), 1000);
         }
         
         jump() {
@@ -376,6 +385,7 @@
             this.distanceMeter.updateHighScore();
             
             this.showGameOverScreen();
+            this.inputDisabledUntil = performance.now() + 2000;
         }
         
         showGameOverScreen() {
@@ -408,6 +418,8 @@
             
             document.getElementById('gameOverScreen').style.display = 'none';
             this.updateUI();
+
+            this.uiUpdateInterval = setInterval(() => this.updateUI(), 1000);
             
             console.log('リスタート完了');
         }
@@ -573,8 +585,7 @@
                 this.checkCollisions();
                 
                 this.distanceMeter.update(this.currentSpeed, this.deltaTime);
-                
-                this.updateUI();
+                // this.updateUI();  // UI更新はsetIntervalで行う
             }
             
             this.render();
@@ -589,6 +600,10 @@
                 this.canvas.removeEventListener('touchstart', this.touchHandler);
                 this.canvas.removeEventListener('click', this.clickHandler);
                 this.eventsBound = false;
+            }
+            if (this.uiUpdateInterval) {
+                clearInterval(this.uiUpdateInterval);
+                this.uiUpdateInterval = null;
             }
         }
     }
