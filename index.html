@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satoshi Runner - リスタート修正版</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        
+        <div id="gameInfo">
+            <div>スコア: <span id="score">0</span></div>
+            <div>最高スコア: <span id="highScore">0</span></div>
+            <div>距離: <span id="distance">0</span>px</div>
+        </div>
+        
+        <div id="speedInfo">
+            <div>スピード: <span id="currentSpeed">6.0</span></div>
+            <div>最大: <span id="maxSpeed">13.0</span></div>
+            <div>FPS: <span id="fps">60</span></div>
+        </div>
+        
+        <div id="gameOverScreen">
+            <h2 class="text-3xl mb-6">ゲームオーバー!</h2>
+            <p class="mb-2 text-xl">スコア: <span id="finalScore">0</span></p>
+            <p class="mb-2 text-lg">最高スコア: <span id="finalHighScore">0</span></p>
+            <p class="mb-2 text-lg">最終距離: <span id="finalDistance">0</span>px</p>
+            <p class="mb-6 text-lg">最高スピード: <span id="finalMaxSpeed">6.0</span></p>
+            <p class="text-sm">Spaceキーでリスタート</p>
+        </div>
+        
+        <div id="instructions">
+            <p>Spaceキーでジャンプ！障害物を避けてさとしを走らせよう！</p>
+            <p class="text-sm mt-1">スピードは自動的に上昇します（約7秒ごとに+1）</p>
+        </div>
+    </div>
+</body>
+</html>

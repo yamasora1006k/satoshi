@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #87CEEB, #98FB98);
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    image-rendering: pixelated;
+    letter-spacing: 1px;
+    overflow: hidden;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameCanvas {
+    background: #87CEEB;
+    display: block;
+}
+
+#gameInfo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    background: #fff;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0 #000;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+#speedInfo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    background: #fff;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0 #000;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+#gameOverScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.9);
+    color: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 20;
+    letter-spacing: 2px;
+    image-rendering: pixelated;
+    font-size: 24px;
+    border: 2px solid white;
+}
+
+#instructions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #333;
+    text-align: center;
+    font-size: 16px;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    background: #fff;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0 #000;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.pixel-font {
+    font-family: 'Courier New', monospace;
+    image-rendering: pixelated;
+}
